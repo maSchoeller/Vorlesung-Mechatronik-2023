@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33417.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vorlesung_4", "Vorlesung_4\Vorlesung_4.csproj", "{D6EC8ACF-1BB3-4D49-B1AE-5955C9A3BE20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vorlesung_3_Wiederholung", "Vorlesung_3_Wiederholung\Vorlesung_3_Wiederholung.csproj", "{1C468B4B-8DF9-4D7C-A1B3-BBC9BF8E2E60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6EC8ACF-1BB3-4D49-B1AE-5955C9A3BE20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6EC8ACF-1BB3-4D49-B1AE-5955C9A3BE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6EC8ACF-1BB3-4D49-B1AE-5955C9A3BE20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6EC8ACF-1BB3-4D49-B1AE-5955C9A3BE20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C468B4B-8DF9-4D7C-A1B3-BBC9BF8E2E60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C468B4B-8DF9-4D7C-A1B3-BBC9BF8E2E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C468B4B-8DF9-4D7C-A1B3-BBC9BF8E2E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C468B4B-8DF9-4D7C-A1B3-BBC9BF8E2E60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16A6ADAD-F957-4D9E-98C0-5518BA71ABD3}
+	EndGlobalSection
+EndGlobal
