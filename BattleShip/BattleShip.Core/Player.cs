@@ -2,9 +2,20 @@
 
 public class Player
 {
+    private readonly Random _Random = new Random();
+
     public Shoot ShootRound(GameBoard board)
     {
 
-        return new Shoot(1, 1);
+        while (true)
+        {
+            var x = _Random.Next(0, 10);
+            var y = _Random.Next(0, 10);
+
+            if (!board[x, y].IsShot)
+            {
+                return new Shoot(x, y);
+            }
+        }
     }
 }

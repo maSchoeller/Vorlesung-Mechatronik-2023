@@ -1,6 +1,6 @@
 # Klassendesign
 
-- [ ] Schiffe
+- [X] Schiffe
 - [X] Spielfeld
 - [ ] Schuss
 - [ ] Spieler

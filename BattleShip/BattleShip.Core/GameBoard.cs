@@ -16,6 +16,6 @@ public class GameBoard
         }
     }
 
-    public GameField this[int x, int y] => _Field[x, y];
+    public ReadOnlyGameField this[int x, int y] => _Field[x, y];
 
 }

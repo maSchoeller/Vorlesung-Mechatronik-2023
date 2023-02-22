@@ -6,7 +6,7 @@ public static class GameBoardFiller
     {
         //NOTE: Die Schiffe werden absteigend sortiert, dadurch ist der Algorithmus stabiler.
         //      Da die kleinsten Schiffe zum Schluss gesetzt werden
-        ships = ships.OrderDescending().ToArray();
+        //ships = ships.OrderByDescending(s => s).ToArray();
 
 
         int xLength, yLength, xStart, xEnd, yStart, yEnd;
@@ -55,12 +55,23 @@ public static class GameBoardFiller
             if (isHorizontal)
             {
                 for (int xOffset = 0; xOffset < shipLength; xOffset++)
-                    board[xLength + xOffset, yLength].FieldType = FieldType.Ship;
+                {
+                    if (board[xLength + xOffset, yLength] is GameField field)
+                    {
+                        field.FieldType = FieldType.Ship;
+                    }
+
+                }
             }
             else
             {
                 for (int yOffset = 0; yOffset < shipLength; yOffset++)
-                    board[xLength, yLength + yOffset].FieldType = FieldType.Ship;
+                {
+                    if (board[xLength, yLength + yOffset] is GameField field)
+                    {
+                        field.FieldType = FieldType.Ship;
+                    }
+                }
             }
         }
     }
