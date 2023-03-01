@@ -8,37 +8,39 @@ internal class Program
     static void Main(string[] args)
     {
         Player player = new Player();
-        GameBoard board = new GameBoard();
-        GameBoardFiller.FillGameBoard(board, new[] { 3, 4, 5, 2, 3, 2, 4, 6 });
+        GameLoop gameLoop = new GameLoop();
+        gameLoop.Start(player, new[] { 3, 3, 2, 2, 4,4,2,1,1 });
+
+        PrintGameBoard(gameLoop.GameBoard as GameBoard);
         int counter = 0;
-        while (!IsGameBoardFinished(board))
+        while (!gameLoop.PlayRound())
         {
-            Shoot shoot = player.ShootRound(board);
-            var readOnlyField = board[shoot.X, shoot.Y];
-            GameField field = readOnlyField as GameField;
-            field.IsShot = true;
             counter++;
         }
         Console.WriteLine(counter);
-        PrintGameBoard(board);
+        PrintGameBoard(gameLoop.GameBoard);
         Console.WriteLine();
     }
 
-    private static bool IsGameBoardFinished(GameBoard board)
+    private static void PrintGameBoard(IReadOnlyGameBoard board)
     {
         for (int x = 0; x < 10; x++)
         {
             for (int y = 0; y < 10; y++)
             {
-                var field = board[x, y] as GameField;
-                if (field.FieldType is FieldType.Ship && !field.IsShot)
+                Console.Write(board[x, y] switch
                 {
-                    return false;
-                }
+                    { FieldType: null } => " ~",
+                    { FieldType: FieldType.Water, IsShot: false } => " ~",
+                    { FieldType: FieldType.Water, IsShot: true } => " *",
+                    { FieldType: FieldType.Ship, IsShot: false } => " s",
+                    { FieldType: FieldType.Ship, IsShot: true } => " x",
+                    _ => throw new InvalidOperationException()
+                });
             }
+            Console.WriteLine();
         }
 
-        return true;
     }
 
     private static void PrintGameBoard(GameBoard board)
@@ -47,29 +49,14 @@ internal class Program
         {
             for (int y = 0; y < 10; y++)
             {
-                //Es wird ein ValueTuple erstellt, das wir über die switch expression auswerden
-                (FieldType? FieldType, bool IsShot) fieldTuple = (board[x, y].FieldType, board[x, y].IsShot);
-                Console.Write(fieldTuple switch
+                Console.Write(board[x, y] switch
                 {
-                    (null, false) => " ~",
-                    (FieldType.Water, false) => " ~",
-                    (FieldType.Water, true) => " *",
-                    (FieldType.Ship, false) => " s",
-                    (FieldType.Ship, true) => " x",
+                    { FieldType: FieldType.Water, IsShot: false } => " ~",
+                    { FieldType: FieldType.Water, IsShot: true } => " *",
+                    { FieldType: FieldType.Ship, IsShot: false } => " s",
+                    { FieldType: FieldType.Ship, IsShot: true } => " x",
                     _ => throw new InvalidOperationException()
                 });
-
-
-                //Alternativ ohne das ein Tuple erstellt wird, hier sogar etwas aussagekräftiger
-
-                //Console.Write(board[x, y] switch
-                //{
-                //    { FieldType: FieldType.Water, IsShot: false } => " ~",
-                //    { FieldType: FieldType.Water, IsShot: true } => " *",
-                //    { FieldType: FieldType.Ship, IsShot: false } => " s",
-                //    { FieldType: FieldType.Ship, IsShot: true } => " x",
-                //    _ => throw new InvalidOperationException()
-                //});
             }
             Console.WriteLine();
         }

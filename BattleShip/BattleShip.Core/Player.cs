@@ -4,9 +4,8 @@ public class Player
 {
     private readonly Random _Random = new Random();
 
-    public Shoot ShootRound(GameBoard board)
+    public Shoot ShootRound(IReadOnlyGameBoard board)
     {
-
         while (true)
         {
             var x = _Random.Next(0, 10);
