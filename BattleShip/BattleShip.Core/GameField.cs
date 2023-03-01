@@ -1,65 +1,28 @@
 ﻿namespace BattleShip.Core;
 
-public class ReadOnlyGameField
+public interface IReadOnlyGameField
 {
-    protected FieldType _FieldType;
-    public FieldType? FieldType
+    FieldType? FieldType { get; }
+    bool IsShot { get; }
+}
+
+public class GameField : IReadOnlyGameField
+{
+    public FieldType FieldType { get; set; }
+
+    FieldType? IReadOnlyGameField.FieldType
     {
         get
         {
             if (IsShot)
             {
-                return _FieldType;
+                return FieldType;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
     }
 
-    public bool IsShot { get; protected set; }
-}
-
-
-
-
-public class GameField : ReadOnlyGameField
-{
-
-    public new FieldType FieldType
-    {
-        get
-        {
-            return _FieldType;
-        }
-        set
-        {
-            _FieldType = value;
-        }
-    }
-
-    public new bool IsShot
-    {
-        get
-        {
-            return base.IsShot;
-        }
-        set
-        {
-            base.IsShot = value;
-        }
-    }
-
-    //public void SetFieldType(FieldType fieldType)
-    //{
-    //    FieldType = fieldType;
-    //}
-
-    //public void SetIsShot(bool isShot)
-    //{
-    //    IsShot = isShot;
-    //}
+    public bool IsShot { get; set; }
 }
 
 
