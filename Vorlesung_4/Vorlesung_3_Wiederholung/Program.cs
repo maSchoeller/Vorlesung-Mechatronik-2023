@@ -1,23 +1,44 @@
 ﻿
 
 Animal animal = new Bird();
-Animal secondAnimal = new Dog();
+Dog secondAnimal = new Dog();
+
+//animal.SetSick(true);
+//secondAnimal.SetSick(true);
+
+secondAnimal.IsInLove = true;
+Animal dog = secondAnimal;
+
+Console.WriteLine($"Bird: {animal.CanRun()}");
+Console.WriteLine($"Dog: {dog.CanRun()}");
 
 //Compiler Error: obwohl die Methode definiert ist kann sie von außen durch private nicht aufgerufen werden.
 //animal._IsSick = true;
 //animal.WantsToEat = true;
+//var wantsToEat = animal.WantsToEat;
 
 
 // Der Aufruf ist kein Problem, da die Methode als public deklariert ist.
-animal.TryEat();
+//animal.TryEat();
 
 // Der Aufruf ist möglich weil der Aufruf im gleichen Projekt stattfindet.
-animal.Run();
+//animal.Run();
 
 
 public abstract class Animal
 {
     #region Sichtbarkeiten
+
+    public void Main()
+    {
+
+    }
+
+    //public int Main()
+    public void Main(string[] args)
+    {
+
+    }
 
     //Wiederholung wir haben 4 Verschiedene Sichtbarkeiten:
     // - private
@@ -32,6 +53,11 @@ public abstract class Animal
     /// Niemand außer die Klasse selbst kann diese Methode aufrufen
     /// </summary>
     private bool _IsSick;
+
+    public void SetSick(bool isSick)
+    {
+        _IsSick = isSick;
+    }
 
     /// <summary>
     /// Gleich wie private kann die Methode/das Property nicht von "außen" aufgerufen werden,
@@ -102,7 +128,7 @@ public class Bird : Animal
     //Merke: new ist best practice aber optional,
     //wenn eine Methode die geleiche Sigantur besitzt wie die Basisklasse
     //wird die Methode oder das Property automatisch übdeckt.
-    
+
 
     public override bool TryEat()
     {
@@ -111,8 +137,12 @@ public class Bird : Animal
             Console.WriteLine("the bird eats, the food is so delicious");
             //Merke: Durch protected kann auch der Erbe das Property setzen.
             WantsToEat = false;
+            return true;
         }
-        return WantsToEat;
+        else
+        {
+            return false;
+        }
     }
 
     public new void Drink()
