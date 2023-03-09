@@ -182,5 +182,5 @@ public record JumpingHero(string Name, double MaxJumpDistance, int YearSalary, i
 //void MyTestMethode(int argument)
 //{
 //    Console.WriteLine(argument);
-
+//}
 #endregion
