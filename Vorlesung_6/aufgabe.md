@@ -25,6 +25,7 @@ Randbedingungen sind:
   - Addition
   - Subtraktion
   - Multiplikation
+- Die Rechenoperation soll über eine ComboBox ausgewählt werden und der Teile-Button soll zu einem Berechnen Button werden.
 - Ermögliche es dem Bediener, dass er durch einen Knopfdruck den ausgerechneten Wert entweder in das erste oder zweite Inputfeld kopieren kann.
 
 
