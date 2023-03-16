@@ -1,54 +1,55 @@
-﻿namespace BattleShip.Core;
-
-public class GameLoop
+﻿namespace BattleShip.Core
 {
-    private GameBoard _GameBoard;
-    private Player _Player;
-
-    public void Start(Player player, int[] ships)
+    public class GameLoop
     {
-        _Player = player;
-        _GameBoard = new GameBoard();
-        GameBoardFiller.FillGameBoard(_GameBoard, ships);
-    }
+        private GameBoard _GameBoard;
+        private Player _Player;
 
-
-    public IReadOnlyGameBoard GameBoard
-    {
-        get
+        public void Start(Player player, int[] ships)
         {
-            return _GameBoard;
-        }
-    }
-
-    public bool PlayRound()
-    {
-        if (IsGameFinsihed())
-        {
-            return true;
+            _Player = player;
+            _GameBoard = new GameBoard();
+            GameBoardFiller.FillGameBoard(_GameBoard, ships);
         }
 
-        var shoot = _Player.ShootRound(_GameBoard);
-        _GameBoard[shoot.X, shoot.Y].IsShot = true;
 
-        return IsGameFinsihed();
-    }
-
-    private bool IsGameFinsihed()
-    {
-        for (int x = 0; x < 10; x++)
+        public IReadOnlyGameBoard GameBoard
         {
-            for (int y = 0; y < 10; y++)
+            get
             {
-                var field = _GameBoard[x, y];
-                if (field.FieldType is FieldType.Ship && !field.IsShot)
-                {
-                    return false;
-                }
+                return _GameBoard;
             }
         }
 
-        return true;
-    }
+        public bool PlayRound()
+        {
+            if (IsGameFinsihed())
+            {
+                return true;
+            }
 
+            var shoot = _Player.ShootRound(_GameBoard);
+            _GameBoard[shoot.X, shoot.Y].IsShot = true;
+
+            return IsGameFinsihed();
+        }
+
+        private bool IsGameFinsihed()
+        {
+            for (int x = 0; x < 10; x++)
+            {
+                for (int y = 0; y < 10; y++)
+                {
+                    var field = _GameBoard[x, y];
+                    if (field.FieldType is FieldType.Ship && !field.IsShot)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+    }
 }

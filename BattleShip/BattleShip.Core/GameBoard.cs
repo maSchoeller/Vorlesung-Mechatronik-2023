@@ -1,29 +1,30 @@
-﻿namespace BattleShip.Core;
-
-public interface IReadOnlyGameBoard
+﻿namespace BattleShip.Core
 {
-    IReadOnlyGameField this[int x, int y] { get; }
-
-}
-public class GameBoard : IReadOnlyGameBoard
-{
-    private GameField[,] _Field;
-
-    public GameBoard()
+    public interface IReadOnlyGameBoard
     {
-        _Field = new GameField[10, 10];
+        IReadOnlyGameField this[int x, int y] { get; }
 
+    }
+    public class GameBoard : IReadOnlyGameBoard
+    {
+        private GameField[,] _Field;
 
-        for (int i = 0; i < 10; i++)
+        public GameBoard()
         {
-            for (int ii = 0; ii < 10; ii++)
+            _Field = new GameField[10, 10];
+
+
+            for (int i = 0; i < 10; i++)
             {
-                _Field[i, ii] = new GameField();
+                for (int ii = 0; ii < 10; ii++)
+                {
+                    _Field[i, ii] = new GameField();
+                }
             }
         }
+
+        public GameField this[int x, int y] => _Field[x, y];
+
+        IReadOnlyGameField IReadOnlyGameBoard.this[int x, int y] => _Field[x, y];
     }
-
-    public GameField this[int x, int y] => _Field[x, y];
-
-    IReadOnlyGameField IReadOnlyGameBoard.this[int x, int y] => _Field[x, y];
 }

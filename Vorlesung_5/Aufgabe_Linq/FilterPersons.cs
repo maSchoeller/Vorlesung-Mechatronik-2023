@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 
 namespace Aufgabe_Linq
 {
@@ -44,7 +45,13 @@ namespace Aufgabe_Linq
         /// </summary>
         public static IEnumerable<Person> Task1(IEnumerable<Person> person)
         {
-            return person.Where(p => p.Assistant is not null);
+            var methode = IsAssistantNotNull;
+            return person.Where(methode);
+        }
+
+        private static bool IsAssistantNotNull(Person person)
+        {
+            return person.Assistant is not null;
         }
 
         /// <summary>
@@ -62,6 +69,7 @@ namespace Aufgabe_Linq
         public static Hero Task3(IEnumerable<Person> persons)
         {
             return persons.Last(p => p is Hero { Type: HeroType.Technology }) as Hero;
+            //return persons.Last(p => p is Hero h && h.Type == HeroType.Technology) as Hero;
         }
 
         /// <summary>

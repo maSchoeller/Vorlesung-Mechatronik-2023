@@ -1,7 +1,8 @@
-﻿namespace BattleShip.Core;
-
-public enum FieldType
+﻿namespace BattleShip.Core
 {
-    Water = 0,
-    Ship = 1,
+    public enum FieldType
+    {
+        Water = 0,
+        Ship = 1,
+    }
 }

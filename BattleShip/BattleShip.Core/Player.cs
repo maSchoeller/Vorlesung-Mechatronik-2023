@@ -1,19 +1,22 @@
-﻿namespace BattleShip.Core;
+﻿using System;
 
-public class Player
+namespace BattleShip.Core
 {
-    private readonly Random _Random = new Random();
-
-    public Shoot ShootRound(IReadOnlyGameBoard board)
+    public class Player
     {
-        while (true)
-        {
-            var x = _Random.Next(0, 10);
-            var y = _Random.Next(0, 10);
+        private readonly Random _Random = new Random();
 
-            if (!board[x, y].IsShot)
+        public Shoot ShootRound(IReadOnlyGameBoard board)
+        {
+            while (true)
             {
-                return new Shoot(x, y);
+                var x = _Random.Next(0, 10);
+                var y = _Random.Next(0, 10);
+
+                if (!board[x, y].IsShot)
+                {
+                    return new Shoot(x, y);
+                }
             }
         }
     }
