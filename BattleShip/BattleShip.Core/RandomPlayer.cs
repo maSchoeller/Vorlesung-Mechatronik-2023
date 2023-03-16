@@ -2,7 +2,7 @@
 
 namespace BattleShip.Core
 {
-    public class Player
+    public class RandomPlayer : IPlayer
     {
         private readonly Random _Random = new Random();
 
