@@ -3,9 +3,9 @@
     public class GameLoop
     {
         private GameBoard _GameBoard;
-        private Player _Player;
+        private IPlayer _Player;
 
-        public void Start(Player player, int[] ships)
+        public void Start(IPlayer player, int[] ships)
         {
             _Player = player;
             _GameBoard = new GameBoard();

@@ -9,7 +9,7 @@ namespace BattleShip.ConsoleHost
     {
         static void Main(string[] args)
         {
-            Player player = new Player();
+            RandomPlayer player = new RandomPlayer();
             GameLoop gameLoop = new GameLoop();
             gameLoop.Start(player, new[] { 3, 3, 2, 2, 4, 4, 2, 1, 1 });
 
